@@ -46,7 +46,7 @@ if (r.status_code==200):
 #    text = text + " " + item;
 #gram_token = 'Use own TOKEN'
 #chat_id = 'Use own chat_id'
-#mogi = telegram.Bot(token= gram_token)
-#mogi.sendMessage(chat_id = chat_id, text=text);
+#mybot = telegram.Bot(token= gram_token)
+#mybot.sendMessage(chat_id = chat_id, text=text);
 #print("[Telegram] Send "+text);
 ####################################
