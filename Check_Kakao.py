@@ -4,6 +4,8 @@ from datetime import date
 import sqlite3
 import requests
 import os
+from pushbullet import Pushbullet
+#from telegram_.telegram_ import send_message
 
 # Connect DB
 con = sqlite3.connect('/share/my/Kakao/kakao.db')
@@ -31,7 +33,16 @@ r = requests.get(url);
 
 #if Page Exist Save and Send
 if (r.status_code==200):
-  os.system("/share/my/Telegram/tele.py \"%s\n%s\" "%("Download Kakao BG", url));
+  #send_message("%s\n%s"%("Download Kakao BG", url));
+  api_key = "xxx"
+  pb = Pushbullet(api_key, "xxx")
+  pb.push_link("Download Kakao BG", url)
+  
+  file_url = "https://store.kakaofriends.com/download?url=https://t1.kakaocdn.net/friends/prod/brand/%s_type1_1440.jpg"%target
+  pb.push_link("Android Version", file_url)
+  file_url = "https://store.kakaofriends.com/download?url=https://t1.kakaocdn.net/friends/prod/brand/%s_type1_2880.jpg"%target
+  pb.push_link("PC Version", file_url)
+  
   cur.execute("INSERT INTO Check_hist Values(\'%s\',\'%s\');"%(target, "O"));
   con.commit();
   con.close();
